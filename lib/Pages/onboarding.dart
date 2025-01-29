@@ -51,7 +51,7 @@ class _OnboardingState extends State<Onboarding> {
 
             // Button Section
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
