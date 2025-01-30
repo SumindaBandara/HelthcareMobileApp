@@ -33,11 +33,9 @@ class _OnboardingState extends State<Onboarding> {
             const SizedBox(height: 50.0),
 
             // Text Section
-           
+
             const Text(
-              
               "Explore \n the Best \n Doctors",
-              
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 40.0,
@@ -45,7 +43,6 @@ class _OnboardingState extends State<Onboarding> {
                 color: Colors.black,
               ),
             ),
-            
 
             const SizedBox(height: 40.0),
 
@@ -61,7 +58,7 @@ class _OnboardingState extends State<Onboarding> {
                       Navigator.pushNamed(context, '/next'); // Example
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
+                      backgroundColor: const Color.fromARGB(255, 251, 8, 8),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(28.0),
                       ),
@@ -84,7 +81,6 @@ class _OnboardingState extends State<Onboarding> {
           ],
         ),
       ),
-          
     );
   }
 }
