@@ -44,7 +44,7 @@ class _OnboardingState extends State<Onboarding> {
               ),
             ),
 
-            const SizedBox(height: 40.0),
+            const SizedBox(height: 10.0),
 
             // Button Section
             Padding(
