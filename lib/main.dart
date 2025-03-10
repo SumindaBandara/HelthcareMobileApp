@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'onboarding2.dart';
+
+
 import 'home1.dart';
 
 void main() {
@@ -14,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => Onboarding2(),
-        '/four': (context) => Home1(),
+        
+        '/': (context) => Home1(),
       },
     );
   }
