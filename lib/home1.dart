@@ -62,7 +62,7 @@ class Home1 extends StatelessWidget {
                   const Spacer(),
                   Image.network(
                     'https://via.placeholder.com/150', // Replace with doctor image
-                    width: 100,
+                    width: 50,
                   ),
                 ],
               ),
@@ -107,9 +107,12 @@ class Home1 extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildNavItem(Icons.medical_services, 'Top Doctors'),
-                _buildNavItem(Icons.person_search, 'Find Doctor'),
-                _buildNavItem(Icons.local_hospital, 'Ambulance'),
+                _buildNavItemWithNavigation(
+                    context, Icons.medical_services, 'Top Doctors', '/three'),
+                _buildNavItemWithNavigation(
+                    context, Icons.medical_services, 'Top Doctors', '/four'),
+                _buildNavItemWithNavigation(
+                    context, Icons.medical_services, 'Top Doctors', '/four'),
               ],
             ),
 
@@ -183,7 +186,7 @@ class Home1 extends StatelessWidget {
   }
 
   // Function to build navigation item
-  Column _buildNavItem(IconData icon, String label) {
+  Column _buildNavItemWithNavigation(BuildContext context, IconData icon, String label, String route) {
     return Column(
       children: [
         CircleAvatar(

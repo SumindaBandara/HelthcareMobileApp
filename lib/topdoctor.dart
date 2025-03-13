@@ -42,6 +42,7 @@ class TopDoctorsScreen extends StatelessWidget {
       "image": "assets/doctor5.jpg"
     },
   ];
+ TopDoctorsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +88,7 @@ class DoctorCard extends StatelessWidget {
   final String distance;
   final String image;
 
-  const DoctorCard({
+  const DoctorCard({super.key, 
     required this.name,
     required this.specialty,
     required this.rating,

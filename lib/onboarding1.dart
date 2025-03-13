@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Onboarding2 extends StatefulWidget {
-  const Onboarding2({super.key});
+class Onboarding1 extends StatefulWidget {
+  const Onboarding1({super.key});
 
   @override
-  State<Onboarding2> createState() => Onboarding2State();
+  State<Onboarding1> createState() => Onboarding2State();
 }
 
-class Onboarding2State extends State<Onboarding2> {
+class Onboarding2State extends State<Onboarding1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +28,9 @@ class Onboarding2State extends State<Onboarding2> {
                     child: Text(
                         "Skip",
                         style: TextStyle(
-                          fontSize: 16, color: Colors.grey,
+                            fontSize: 16, color: Colors.grey,
                         )
-                    ),
+                        ),
                   ),
                 ],
               ),
@@ -60,16 +60,16 @@ class Onboarding2State extends State<Onboarding2> {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.circle, size: 8, color: Colors.grey),
-                          SizedBox(width: 4),
                           Icon(Icons.circle, size: 8, color: Colors.blue),
+                          SizedBox(width: 4),
+                          Icon(Icons.circle, size: 8, color: Colors.grey),
                         ],
                       ),
                       Spacer(),
                       FloatingActionButton(
                         backgroundColor: Colors.blue,
                         onPressed: () {
-                          Navigator.pushNamed(context, '/four'); // Changed '/third' to '/four'
+                          Navigator.pushNamed(context, '/two'); // Changed '/third' to '/four'
                         },
                         child: Icon(Icons.arrow_forward, color: Colors.white),
                       ),
