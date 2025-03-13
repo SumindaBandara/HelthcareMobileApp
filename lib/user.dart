@@ -59,7 +59,9 @@ class OnboardingScreen extends State<Onboarding3> {
               ),
               const SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/five');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
@@ -77,7 +79,9 @@ class OnboardingScreen extends State<Onboarding3> {
               ),
               const SizedBox(height: 15),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/six');
+                  },
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: Colors.blue),
                   shape: RoundedRectangleBorder(
