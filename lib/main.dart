@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/login.dart';
+
 import 'package:untitled/onboarding1.dart';
 import 'package:untitled/onboarding2.dart';
-import 'package:untitled/register.dart';
+
 import 'package:untitled/topdoctor.dart';
 import 'package:untitled/user.dart';
 
@@ -27,8 +27,7 @@ class MyApp extends StatelessWidget {
         '/two': (context) => Onboarding2(),
         '/four': (context) => Onboarding3(),
         '/three': (context) => TopDoctorsScreen(),
-        '/five' : (context) => Login1(),
-        '/six': (context) => Register1(),
+        
       },
     );
   }
