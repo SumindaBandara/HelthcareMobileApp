@@ -23,7 +23,7 @@ class Onboarding2State extends State<Onboarding2> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/one');
+                      Navigator.pushNamed(context, '/four');
                     },
                     child: Text(
                         "Skip",
@@ -38,7 +38,7 @@ class Onboarding2State extends State<Onboarding2> {
             Expanded(
               child: Center(
                 child: Image.asset(
-                  "images/doctor.jpeg",
+                  "images/women.png",
                   height: 600,
                 ),
               ),

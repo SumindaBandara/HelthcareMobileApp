@@ -60,8 +60,7 @@ class Home1 extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  Image.network(
-                    'https://via.placeholder.com/150', // Replace with doctor image
+                  Image.asset("images/female.png",// Replace with doctor image
                     width: 50,
                   ),
                 ],

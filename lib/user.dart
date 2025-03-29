@@ -21,8 +21,9 @@ class OnboardingScreen extends State<Onboarding3> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/logo.png', // Replace with your actual image asset
+                'assets/icon.png', // Replace with your actual image asset
                 height: 120,
+                width: 10,
               ),
               const SizedBox(height: 20),
               const Text(
