@@ -17,7 +17,8 @@ class Onboarding2State extends State<Onboarding2> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -25,12 +26,11 @@ class Onboarding2State extends State<Onboarding2> {
                     onPressed: () {
                       Navigator.pushNamed(context, '/four');
                     },
-                    child: Text(
-                        "Skip",
+                    child: Text("Skip",
                         style: TextStyle(
-                          fontSize: 16, color: Colors.grey,
-                        )
-                    ),
+                          fontSize: 16,
+                          color: Colors.grey,
+                        )),
                   ),
                 ],
               ),
@@ -38,7 +38,7 @@ class Onboarding2State extends State<Onboarding2> {
             Expanded(
               child: Center(
                 child: Image.asset(
-                  "images/women.png",
+                  "images/male.png",
                   height: 600,
                 ),
               ),
@@ -49,7 +49,7 @@ class Onboarding2State extends State<Onboarding2> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Find a lot of specialist doctors in one place",
+                    "Get advice only from a doctor you believe in.",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -69,7 +69,8 @@ class Onboarding2State extends State<Onboarding2> {
                       FloatingActionButton(
                         backgroundColor: Colors.blue,
                         onPressed: () {
-                          Navigator.pushNamed(context, '/four'); // Changed '/third' to '/four'
+                          Navigator.pushNamed(
+                              context, '/four'); // Changed '/third' to '/four'
                         },
                         child: Icon(Icons.arrow_forward, color: Colors.white),
                       ),

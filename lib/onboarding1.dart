@@ -17,7 +17,8 @@ class Onboarding2State extends State<Onboarding1> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -25,12 +26,11 @@ class Onboarding2State extends State<Onboarding1> {
                     onPressed: () {
                       Navigator.pushNamed(context, '/four');
                     },
-                    child: Text(
-                        "Skip",
+                    child: Text("Skip",
                         style: TextStyle(
-                            fontSize: 16, color: Colors.grey,
-                        )
-                        ),
+                          fontSize: 16,
+                          color: Colors.grey,
+                        )),
                   ),
                 ],
               ),
@@ -38,7 +38,7 @@ class Onboarding2State extends State<Onboarding1> {
             Expanded(
               child: Center(
                 child: Image.asset(
-                  "images/women.png",
+                  "images/female.png",
                   height: 1000,
                 ),
               ),
@@ -69,7 +69,8 @@ class Onboarding2State extends State<Onboarding1> {
                       FloatingActionButton(
                         backgroundColor: Colors.blue,
                         onPressed: () {
-                          Navigator.pushNamed(context, '/two'); // Changed '/third' to '/four'
+                          Navigator.pushNamed(
+                              context, '/two'); // Changed '/third' to '/four'
                         },
                         child: Icon(Icons.arrow_forward, color: Colors.white),
                       ),

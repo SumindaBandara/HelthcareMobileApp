@@ -8,8 +8,6 @@ class Onboarding3 extends StatefulWidget {
 }
 
 class OnboardingScreen extends State<Onboarding3> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +19,9 @@ class OnboardingScreen extends State<Onboarding3> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/icon.png', // Replace with your actual image asset
-                height: 120,
-                width: 10,
+                'images/icon_app.png', // Replace with your actual image asset
+                height: 150,
+                width: 400,
               ),
               const SizedBox(height: 20),
               const Text(
@@ -82,7 +80,7 @@ class OnboardingScreen extends State<Onboarding3> {
               OutlinedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/six');
-                  },
+                },
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: Colors.blue),
                   shape: RoundedRectangleBorder(
