@@ -6,6 +6,7 @@ import 'package:untitled/onboarding2.dart';
 import 'package:untitled/topdoctor.dart';
 import 'package:untitled/user.dart';
 import 'package:untitled/Sign_in.dart';
+import 'package:untitled/Sign_up.dart';
 
 import 'home1.dart';
 
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/four': (context) => Onboarding3(),
         '/three': (context) => TopDoctorsScreen(),
         '/five': (context) => Sign_in(),
+        '/six': (context) => Sign_up(),
       },
     );
   }
