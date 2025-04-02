@@ -1,0 +1,2 @@
+E:/HealthCare Mobile App/HelthcareMobileApp/android/app/.cxx/Debug/5i4z5u16/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/HealthCare Mobile App/HelthcareMobileApp/android/app/.cxx/Debug/5i4z5u16/armeabi-v7a/CMakeFiles/rebuild_cache.dir

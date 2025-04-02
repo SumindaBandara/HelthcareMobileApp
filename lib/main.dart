@@ -5,7 +5,7 @@ import 'package:untitled/onboarding2.dart';
 
 import 'package:untitled/topdoctor.dart';
 import 'package:untitled/user.dart';
-
+import 'package:untitled/Sign_in.dart';
 
 import 'home1.dart';
 
@@ -21,13 +21,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        
         '/': (context) => Onboarding1(),
-        '/one' : (context) => Home1(),
+        '/one': (context) => Home1(),
         '/two': (context) => Onboarding2(),
         '/four': (context) => Onboarding3(),
         '/three': (context) => TopDoctorsScreen(),
-        
+        '/five': (context) => Sign_in(),
       },
     );
   }
