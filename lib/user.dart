@@ -19,11 +19,10 @@ class OnboardingScreen extends State<Onboarding3> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'images/icon_app.png', // Replace with your actual image asset
-                height: 150,
+                'images/icon_app2.png', // Replace with your actual image asset
+                height: 250,
                 width: 400,
               ),
-              const SizedBox(height: 20),
               const Text(
                 'CENTRAL CARE',
                 style: TextStyle(

@@ -33,9 +33,9 @@ class _Sign_inState extends State<Sign_in> {
                 child: Text(
                   'Sign In',
                   style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
               ),
               const SizedBox(height: 30),
@@ -49,7 +49,8 @@ class _Sign_inState extends State<Sign_in> {
                   decoration: InputDecoration(
                     hintText: 'Enter your email',
                     border: InputBorder.none,
-                    prefixIcon: Icon(Icons.mail_outline, color: Colors.grey[600]),
+                    prefixIcon:
+                        Icon(Icons.mail_outline, color: Colors.grey[600]),
                     contentPadding: const EdgeInsets.symmetric(vertical: 15),
                   ),
                 ),
@@ -66,10 +67,13 @@ class _Sign_inState extends State<Sign_in> {
                   decoration: InputDecoration(
                     hintText: 'Enter your password',
                     border: InputBorder.none,
-                    prefixIcon: Icon(Icons.lock_outline, color: Colors.grey[600]),
+                    prefixIcon:
+                        Icon(Icons.lock_outline, color: Colors.grey[600]),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: Colors.grey[600],
                       ),
                       onPressed: () {
@@ -110,6 +114,7 @@ class _Sign_inState extends State<Sign_in> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -123,7 +128,8 @@ class _Sign_inState extends State<Sign_in> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Sign_up()),
+                        MaterialPageRoute(
+                            builder: (context) => const Sign_up()),
                       );
                     },
                     child: const Text('Sign up'),

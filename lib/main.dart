@@ -7,7 +7,8 @@ import 'package:untitled/topdoctor.dart';
 import 'package:untitled/user.dart';
 import 'package:untitled/Sign_in.dart';
 import 'package:untitled/Sign_up.dart';
-
+import 'package:untitled/ondaypayment.dart';
+import 'package:untitled/paymentsucess.dart';
 import 'home1.dart';
 
 void main() {
