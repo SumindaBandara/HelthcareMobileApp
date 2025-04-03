@@ -1,0 +1,2 @@
+C:/Users/HP/Documents/git1/HelthcareMobileApp/android/app/.cxx/Debug/io3w3356/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/HP/Documents/git1/HelthcareMobileApp/android/app/.cxx/Debug/io3w3356/armeabi-v7a/CMakeFiles/rebuild_cache.dir
