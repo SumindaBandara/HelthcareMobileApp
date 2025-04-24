@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/AppointmentPage.dart';
 
 import 'package:untitled/onboarding1.dart';
 import 'package:untitled/onboarding2.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => SavedDoctor(),
+        '/': (context) => AppointmentApp(),
         '/one': (context) => Home1(),
         '/two': (context) => Onboarding2(),
         '/four': (context) => Onboarding3(),
