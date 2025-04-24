@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => AppointmentApp(),
+        '/': (context) => Onboarding1(),
         '/one': (context) => Home1(),
         '/two': (context) => Onboarding2(),
         '/four': (context) => Onboarding3(),
