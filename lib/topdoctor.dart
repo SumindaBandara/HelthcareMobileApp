@@ -1,47 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:untitled/models/topdoctor.dart';
+final List<Doctor> doctors = Doctor.topDoctorsList();
 
 
 
 
 class TopDoctorsScreen extends StatelessWidget {
-  final List<Map<String, String>> doctors = [
-    {
-      "name": "Dr. Rishi",
-      "specialty": "Cardiologist",
-      "rating": "4.7",
-      "distance": "800m away",
-      "image": "assets/doctor1.jpg"
-    },
-    {
-      "name": "Dr. Vaamana",
-      "specialty": "Dentist",
-      "rating": "4.7",
-      "distance": "800m away",
-      "image": "assets/doctor2.jpg"
-    },
-    {
-      "name": "Dr. Nallarasi",
-      "specialty": "Orthopaedic",
-      "rating": "4.7",
-      "distance": "800m away",
-      "image": "assets/doctor3.jpg"
-    },
-    {
-      "name": "Dr. Nihal",
-      "specialty": "Cardiologist",
-      "rating": "4.7",
-      "distance": "800m away",
-      "image": "assets/doctor4.jpg"
-    },
-    {
-      "name": "Dr. Rishita",
-      "specialty": "Cardiologist",
-      "rating": "4.7",
-      "distance": "800m away",
-      "image": "assets/doctor5.jpg"
-    },
-  ];
+  
  TopDoctorsScreen({super.key});
 
   @override
@@ -68,12 +33,12 @@ class TopDoctorsScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final doctor = doctors[index];
             return DoctorCard(
-              name: doctor["name"]!,
-              specialty: doctor["specialty"]!,
-              rating: doctor["rating"]!,
-              distance: doctor["distance"]!,
-              image: doctor["image"]!,
-            );
+  name: doctor.name,
+  specialty: doctor.specialty,
+  rating: doctor.rating,
+  distance: doctor.distance,
+  image: doctor.image,
+);
           },
         ),
       ),
