@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(home: AppointmentPage()));
-}
-
-class AppointmentPage extends StatelessWidget {
+class Checkout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
         currentIndex: 3,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.insert_chart), label: "Reports"),
+              icon: Icon(Icons.assignment), label: "Reports"),
           BottomNavigationBarItem(
               icon: Icon(Icons.notifications), label: "Notification"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
@@ -26,7 +23,12 @@ class AppointmentPage extends StatelessWidget {
             children: [
               SizedBox(height: 50),
               ListTile(
-                leading: BackButton(),
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/eight');
+                  },
+                ),
                 title: Center(
                     child: Text("Appointment",
                         style: TextStyle(fontWeight: FontWeight.bold))),
@@ -66,7 +68,7 @@ class AppointmentPage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 350,
+              height: 400,
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -79,14 +81,18 @@ class AppointmentPage extends StatelessWidget {
                   Row(
                     children: [
                       Spacer(),
-                      Icon(Icons.close),
+                      IconButton(
+                        icon: Icon(Icons.close, color: Colors.black54),
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/eight');
+                        },
+                      ),
                     ],
                   ),
-                  SizedBox(height: 10),
                   Text("Add Card",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                   TextField(
                     decoration: InputDecoration(
                         labelText: "Name on card", hintText: "Ruchi"),
@@ -121,13 +127,16 @@ class AppointmentPage extends StatelessWidget {
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/eleven');
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
                       ),
-                      child: Text("Pay Now", style: TextStyle(fontSize: 16)),
+                      child: Text("Pay Now",
+                          style: TextStyle(fontSize: 16, color: Colors.white)),
                     ),
                   ),
                 ],

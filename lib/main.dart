@@ -6,6 +6,12 @@ import 'package:untitled/onboarding1.dart';
 import 'package:untitled/onboarding2.dart';
 import 'package:untitled/topdoctor.dart';
 import 'package:untitled/user.dart';
+import 'package:untitled/CheckOut.dart';
+import 'package:untitled/doctordetails.dart';
+import 'package:untitled/BookAppointment.dart';
+import 'package:untitled/CheckOut.dart';
+import 'package:untitled/ondaypayment.dart';
+import 'package:untitled/paymentsucess.dart';
 
 import 'home1.dart';
 
@@ -21,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => Onboarding1(),
@@ -30,6 +37,11 @@ class MyApp extends StatelessWidget {
         '/three': (context) => TopDoctorsScreen(),
         '/five': (context) => Sign_in(),
         '/six': (context) => Sign_up(),
+        '/seven': (context) => DoctorDetailScreen(),
+        '/eight': (context) => AppointmentScreen(),
+        '/nine': (context) => Checkout(),
+        '/ten': (context) => Ondaypayment(),
+        '/eleven': (context) => Paymentsucess(),
       },
     );
   }

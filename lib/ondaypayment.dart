@@ -49,7 +49,12 @@ class OndaypaymentState extends State<Ondaypayment> {
                 children: [
                   Align(
                     alignment: Alignment.topRight,
-                    child: Icon(Icons.close, color: Colors.black54),
+                    child: IconButton(
+                      icon: Icon(Icons.close, color: Colors.black54),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/one');
+                      },
+                    ),
                   ),
                   Text("Name", style: TextStyle(color: Colors.grey)),
                   Text(
@@ -90,15 +95,11 @@ class OndaypaymentState extends State<Ondaypayment> {
                   SizedBox(height: 20),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/one');
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                      ),
+                          backgroundColor: Colors.blue),
                       child: Text(
                         "Back to Home",
                         style: TextStyle(fontSize: 16, color: Colors.white),

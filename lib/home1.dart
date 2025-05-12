@@ -31,41 +31,48 @@ class Home1 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header Section
-              Row(
-                children: [
-                  const CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage(
-                        'https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg'),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Hi, Jone',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
-                        ),
+              Container(
+                color: Color(0xFFE3F2FD), // Light blue background
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 30,
+                      backgroundImage: NetworkImage(
+                        'https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg',
                       ),
-                      SizedBox(height: 2),
-                      Text(
-                        'Jone Doe',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Hi, Jone',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Image.asset(
-                    "images/female.png",
-                    width: 50,
-                  ),
-                ],
+                        SizedBox(height: 2),
+                        Text(
+                          'Jone Doe',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    Image.asset(
+                      "images/headerbg.png",
+                      width: 100,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                ),
               ),
+
               const SizedBox(height: 30),
 
               // Welcome Section

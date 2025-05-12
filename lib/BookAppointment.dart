@@ -9,7 +9,7 @@ class AppointmentScreen extends StatefulWidget {
 }
 
 class _AppointmentScreenState extends State<AppointmentScreen> {
-  int _selectedPayment = 0;
+  int _selectedPayment = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +69,14 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ListTile(
                 leading: Radio(
-                  value: 0,
-                  groupValue: _selectedPayment,
-                  onChanged: (int? value) {
-                    setState(() {
-                      _selectedPayment = value!;
-                    });
-                  },
-                ),
+                    value: 0,
+                    groupValue: _selectedPayment,
+                    onChanged: (int? value) {
+                      setState(() {
+                        _selectedPayment = value!;
+                      });
+                      Navigator.pushReplacementNamed(context, '/nine');
+                    }),
                 title: Text("Card Payment"),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -88,14 +88,14 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               ),
               ListTile(
                 leading: Radio(
-                  value: 1,
-                  groupValue: _selectedPayment,
-                  onChanged: (int? value) {
-                    setState(() {
-                      _selectedPayment = value!;
-                    });
-                  },
-                ),
+                    value: 1,
+                    groupValue: _selectedPayment,
+                    onChanged: (int? value) {
+                      setState(() {
+                        _selectedPayment = value!;
+                      });
+                      Navigator.pushReplacementNamed(context, '/ten');
+                    }),
                 title: Text("On day Payment"),
               ),
               SizedBox(height: 5),
