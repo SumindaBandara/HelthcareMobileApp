@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: AppointmentScreen(),
-    );
-  }
-}
-
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({super.key});
 
@@ -114,7 +98,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 ),
                 title: Text("On day Payment"),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 5),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
