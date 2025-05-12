@@ -18,7 +18,9 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         title: Text("Appointment"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/seven');
+          },
         ),
       ),
       body: SingleChildScrollView(
