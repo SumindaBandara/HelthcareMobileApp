@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Home1 extends StatelessWidget {
-  const Home1 ({super.key});
+  const Home1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,70 +25,69 @@ class Home1 extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header Section
+              Row(
                 children: [
                   const CircleAvatar(
                     radius: 30,
                     backgroundImage: NetworkImage(
-                        'https://via.placeholder.com/150'), // Replace with actual image
+                        'https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg'),
                   ),
                   const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text(
-                        'Hay , Adam',
+                        'Hi, Jone',
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
+                      SizedBox(height: 2),
                       Text(
-                        'Ruchita',
+                        'Jone Doe',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey,
                         ),
                       ),
-                      
                     ],
                   ),
                   const Spacer(),
-                  Image.asset("images/female.png",// Replace with doctor image
+                  Image.asset(
+                    "images/female.png",
                     width: 50,
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 20),
+              const SizedBox(height: 30),
 
-            // Welcome Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
+              // Welcome Section
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text(
-                    'Welcome  to',
+                    'Welcome to',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     'Asiri Hospital',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
+                      color: Colors.blue,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
                   Text(
                     'Contact - +725631247',
                     style: TextStyle(
@@ -98,52 +97,45 @@ class Home1 extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+              const SizedBox(height: 30),
 
-            const SizedBox(height: 20),
+              // Navigation Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildNavItemWithNavigation(
+                      context, Icons.local_hospital, 'Top Doctors', '/three'),
+                  _buildNavItemWithNavigation(
+                      context, Icons.search, 'Find Doctors', '/four'),
+                  _buildNavItemWithNavigation(
+                      context, Icons.local_taxi, 'Ambulance', '/four'),
+                ],
+              ),
+              const SizedBox(height: 40),
 
-            // Navigation Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildNavItemWithNavigation(
-                    context, Icons.medical_services, 'Top Doctors', '/three'),
-                _buildNavItemWithNavigation(
-                    context, Icons.medical_services, 'Top Doctors', '/four'),
-                _buildNavItemWithNavigation(
-                    context, Icons.medical_services, 'Top Doctors', '/four'),
-              ],
-            ),
-
-            const SizedBox(height: 30),
-
-            // Health Tips Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
+              // Health Tips Section
+              const Text(
                 'Health Tips',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Card(
+              const SizedBox(height: 15),
+              Card(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                elevation: 2,
+                elevation: 3,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Column(
                     children: List.generate(
                       5,
                       (index) => ListTile(
-                        leading: const Icon(Icons.check_box, color: Colors.black),
-                        title: Text(
+                        leading: const Icon(Icons.check_circle_outline,
+                            color: Colors.green),
+                        title: const Text(
                           'The 25 Healthiest Fruits You Can Eat, According to a Nutritionist',
                           style: TextStyle(fontSize: 14),
                         ),
@@ -152,8 +144,9 @@ class Home1 extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
 
@@ -162,6 +155,7 @@ class Home1 extends StatelessWidget {
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         currentIndex: 0,
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -184,25 +178,34 @@ class Home1 extends StatelessWidget {
     );
   }
 
-  // Function to build navigation item
-  Column _buildNavItemWithNavigation(BuildContext context, IconData icon, String label, String route) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundColor: Colors.blue[100],
-          child: Icon(
-            icon,
-            color: Colors.blue,
-            size: 30,
+  // Function to build navigation item with tap
+  Widget _buildNavItemWithNavigation(
+      BuildContext context, IconData icon, String label, String route) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, route);
+      },
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.blue[50],
+            child: Icon(
+              icon,
+              color: Colors.blue,
+              size: 30,
+            ),
           ),
-        ),
-        const SizedBox(height: 5),
-        Text(
-          label,
-          style: TextStyle(fontSize: 14),
-        ),
-      ],
+          const SizedBox(height: 6),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

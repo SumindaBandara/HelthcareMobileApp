@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'Sign_up.dart';
 
 class Sign_in extends StatefulWidget {
@@ -100,6 +101,8 @@ class _Sign_inState extends State<Sign_in> {
               // Sign In button
               ElevatedButton(
                 onPressed: () {
+                  Navigator.pushNamed(context, '/one');
+
                   // Sign in logic would go here
                 },
                 style: ElevatedButton.styleFrom(
