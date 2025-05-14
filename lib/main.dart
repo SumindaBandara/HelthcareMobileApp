@@ -1,19 +1,23 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/Sign_in.dart';
-import 'package:untitled/Sign_up.dart';
-import 'package:untitled/onboarding1.dart';
-import 'package:untitled/onboarding2.dart';
-import 'package:untitled/topdoctor.dart';
-import 'package:untitled/user.dart';
-import 'package:untitled/CheckOut.dart';
-import 'package:untitled/doctordetails.dart';
-import 'package:untitled/BookAppointment.dart';
-import 'package:untitled/CheckOut.dart';
-import 'package:untitled/ondaypayment.dart';
-import 'package:untitled/paymentsucess.dart';
+import 'package:untitled/screens/Sign_in.dart';
+import 'package:untitled/screens/Sign_up.dart';
+import 'package:untitled/screens/onboarding1.dart';
+import 'package:untitled/screens/onboarding2.dart';
+import 'package:untitled/screens/topdoctor.dart';
+import 'package:untitled/screens/user.dart';
+import 'package:untitled/screens/CheckOut.dart';
+import 'package:untitled/screens/doctordetails.dart';
+import 'package:untitled/screens/BookAppointment.dart';
+import 'package:untitled/screens/CheckOut.dart';
+import 'package:untitled/screens/ondaypayment.dart';
+import 'package:untitled/screens/paymentsucess.dart';
+import 'package:untitled/screens/Profile.dart';
+import 'package:untitled/screens/Notification.dart';
+import 'package:untitled/screens/SavedDoctorsPage.dart';
+import 'package:untitled/screens/AppointmentPage.dart';
 
-import 'home1.dart';
+import 'screens/home1.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +46,10 @@ class MyApp extends StatelessWidget {
         '/nine': (context) => Checkout(),
         '/ten': (context) => Ondaypayment(),
         '/eleven': (context) => Paymentsucess(),
+        '/twelve': (context) => ProfileScreen(),
+        '/thirteen': (context) => NotificationsScreen(),
+        '/fourteen': (context) => MySavedScreen(),
+        '/fifteen': (context) => Appointment(),
       },
     );
   }

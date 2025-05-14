@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/models/topdoctor.dart';
 
-import 'Services/doctor_service.dart';
+import '../Services/doctor_service.dart';
 import 'doctor_card.dart';
 
 class TopDoctorsScreen extends StatelessWidget {

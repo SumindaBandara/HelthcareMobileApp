@@ -1,29 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Medical App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: const NotificationsScreen(),
-    );
-  }
-}
-
 class NotificationsScreen extends StatelessWidget {
-  const NotificationsScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,28 +28,8 @@ class NotificationsScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 2, // Notification tab selected
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.description_outlined),
-            label: 'Reports',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications, color: Colors.blue),
-            label: 'Notification',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      bottomNavigationBar:
+          BottomNavBar(currentIndex: 2), // Update to match your current index
     );
   }
 
@@ -133,6 +90,60 @@ class NotificationsScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class BottomNavBar extends StatelessWidget {
+  final int currentIndex;
+
+  const BottomNavBar({super.key, required this.currentIndex});
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      currentIndex: currentIndex,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.grey,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      onTap: (index) {
+        if (index == currentIndex) return; // Prevent redundant navigation
+
+        switch (index) {
+          case 0:
+            Navigator.pushReplacementNamed(context, '/one');
+            break;
+          case 1:
+            Navigator.pushReplacementNamed(context, '/reports');
+            break;
+          case 2:
+            // Already on Notifications screen
+            break;
+          case 3:
+            Navigator.pushReplacementNamed(context, '/twelve');
+            break;
+        }
+      },
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_outlined),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.description_outlined),
+          label: 'Reports',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.notifications, color: Colors.blue),
+          label: 'Notification',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline),
+          label: 'Profile',
+        ),
+      ],
     );
   }
 }

@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(AppointmentApp());
-
-class AppointmentApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: AppointmentScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class AppointmentScreen extends StatelessWidget {
+class Appointment extends StatelessWidget {
   final List<Map<String, String>> appointments = [
     {
       'name': 'Dr. Vaamana',

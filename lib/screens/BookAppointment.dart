@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppointmentScreen extends StatefulWidget {
-  const AppointmentScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api

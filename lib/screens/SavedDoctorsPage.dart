@@ -1,17 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(SavedDoctor());
-
-class SavedDoctor extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MySavedScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
 class MySavedScreen extends StatelessWidget {
   final List<Map<String, String>> doctors = [
     {
@@ -34,7 +22,14 @@ class MySavedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back, color: Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            // Navigate to another page when the back arrow is clicked
+            Navigator.pushNamed(context,
+                '/twelve'); // Replace '/anotherPage' with your desired route
+          },
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,

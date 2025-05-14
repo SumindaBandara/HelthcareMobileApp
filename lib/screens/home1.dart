@@ -1,7 +1,37 @@
 import 'package:flutter/material.dart';
 
-class Home1 extends StatelessWidget {
+class Home1 extends StatefulWidget {
   const Home1({super.key});
+
+  @override
+  State<Home1> createState() => _Home1State();
+}
+
+class _Home1State extends State<Home1> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        // Already on Home, no need to navigate
+        break;
+      case 1:
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Reports page not implemented')),
+        );
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/thirteen'); // Notification
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/twelve'); // Profile
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +45,7 @@ class Home1 extends StatelessWidget {
           color: Colors.black,
         ),
         actions: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.notifications,
-              color: Colors.black,
-            ),
-          ),
+          Padding(padding: EdgeInsets.all(8.0)),
         ],
       ),
       body: SingleChildScrollView(
@@ -32,7 +56,7 @@ class Home1 extends StatelessWidget {
             children: [
               // Header Section
               Container(
-                color: Color(0xFFE3F2FD), // Light blue background
+                color: const Color(0xFFE3F2FD), // Light blue background
                 child: Row(
                   children: [
                     const CircleAvatar(
@@ -139,10 +163,10 @@ class Home1 extends StatelessWidget {
                   child: Column(
                     children: List.generate(
                       5,
-                      (index) => ListTile(
-                        leading: const Icon(Icons.check_circle_outline,
+                      (index) => const ListTile(
+                        leading: Icon(Icons.check_circle_outline,
                             color: Colors.green),
-                        title: const Text(
+                        title: Text(
                           'The 25 Healthiest Fruits You Can Eat, According to a Nutritionist',
                           style: TextStyle(fontSize: 14),
                         ),
@@ -157,12 +181,13 @@ class Home1 extends StatelessWidget {
         ),
       ),
 
-      // Bottom Navigation Bar
+      // Bottom Navigation Bar with Navigation
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-        currentIndex: 0,
+        currentIndex: _selectedIndex,
         type: BottomNavigationBarType.fixed,
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -185,7 +210,7 @@ class Home1 extends StatelessWidget {
     );
   }
 
-  // Function to build navigation item with tap
+  // Navigation button
   Widget _buildNavItemWithNavigation(
       BuildContext context, IconData icon, String label, String route) {
     return GestureDetector(
