@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_part/constants.dart';
+import 'package:untitled/screens/AI/constants.dart';
 import 'api_service.dart';
 import 'Doctor.dart';
 import 'DoctorCard.dart';

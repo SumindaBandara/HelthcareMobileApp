@@ -59,32 +59,24 @@ class _Home1State extends State<Home1> {
                 color: const Color(0xFFE3F2FD), // Light blue background
                 child: Row(
                   children: [
-                    const CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage(
-                        'https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg',
-                      ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Asiri Hospital',
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                            fontFamily: 'Poppins',
+                            height: 1.5,
+                            decoration: TextDecoration.none,
+                            decorationColor: Colors.blue,
+                            decorationThickness: 2.0,
+                            decorationStyle: TextDecorationStyle.solid,
+                          )),
                     ),
                     const SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          'Hi, Jone',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 2),
-                        Text(
-                          'Jone Doe',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
                     ),
                     const Spacer(),
                     Image.asset(
@@ -137,7 +129,7 @@ class _Home1State extends State<Home1> {
                   _buildNavItemWithNavigation(
                       context, Icons.local_hospital, 'Top Doctors', '/three'),
                   _buildNavItemWithNavigation(
-                      context, Icons.search, 'Find Doctors', '/four'),
+                      context, Icons.search, 'Find Doctors', '/sixteen'),
                   _buildNavItemWithNavigation(
                       context, Icons.local_taxi, 'Ambulance', '/four'),
                 ],

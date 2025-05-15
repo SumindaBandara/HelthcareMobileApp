@@ -16,6 +16,8 @@ import 'package:untitled/screens/Profile.dart';
 import 'package:untitled/screens/Notification.dart';
 import 'package:untitled/screens/SavedDoctorsPage.dart';
 import 'package:untitled/screens/AppointmentPage.dart';
+import 'package:untitled/screens/AI/find_doctor_screen.dart';
+import 'package:untitled/screens/AI/symptom_checker_screen.dart';
 
 import 'screens/home1.dart';
 
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
         '/thirteen': (context) => NotificationsScreen(),
         '/fourteen': (context) => MySavedScreen(),
         '/fifteen': (context) => Appointment(),
+        '/sixteen': (context) => FindDoctorScreen(),
+        '/seventeen': (context) => SymptomCheckerScreen(),
       },
     );
   }

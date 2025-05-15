@@ -17,25 +17,39 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   // Sample doctors list - in a real app, this would come from an API
   final List<Doctor> _allDoctors = [
     Doctor(
-      name: 'Dr. Vaamana',
-      specialty: 'Dentist',
+      name: 'Dr. Sashika Ranasinghe',
+      specialty: 'Neurologist',
+      rating: 4.9,
+      distance: '2.9 Km',
+      imageUrl: 'images/doctor1.jpg',
+    ),
+    Doctor(
+      name: 'Dr. Kevin Perera',
+      specialty: 'Dermatologist',
       rating: 4.7,
-      distance: '800m away',
-      imageUrl: 'assets/doctor1.jpg',
+      distance: '1.8km away',
+      imageUrl: 'images/doctor2.webp',
     ),
     Doctor(
-      name: 'Dr. Sarah Johnson',
-      specialty: 'Dentist',
+      name: 'Dr. Nuwan Jayasuriya',
+      specialty: 'Orthopedic Surgeon',
+      rating: 4.6,
+      distance: '4.0km away',
+      imageUrl: 'images/doctor3.avif',
+    ),
+    Doctor(
+      name: 'Dr. Ayesh Jayashan',
+      specialty: 'physical Theropyst',
+      rating: 4.7,
+      distance: '3.5km away',
+      imageUrl: 'images/doctor4.png',
+    ),
+    Doctor(
+      name: 'Mrs. Jayasooriya',
+      specialty: 'Neurology',
       rating: 4.5,
-      distance: '1.2km away',
-      imageUrl: 'assets/doctor2.jpg',
-    ),
-    Doctor(
-      name: 'Dr. Michael Brown',
-      specialty: 'Cardiologist',
-      rating: 4.8,
-      distance: '2km away',
-      imageUrl: 'assets/doctor3.jpg',
+      distance: '4.0km away',
+      imageUrl: 'images/doctor5.jpg',
     ),
   ];
 
@@ -131,7 +145,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/symptom-checker');
+                  Navigator.pushNamed(context, '/seventeen');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green[50],
