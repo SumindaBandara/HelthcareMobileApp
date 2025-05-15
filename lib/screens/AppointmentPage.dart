@@ -22,7 +22,14 @@ class Appointment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back, color: Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            // Navigate to another page when the back arrow is clicked
+            Navigator.pushNamed(context,
+                '/twelve'); // Replace '/anotherPage' with your desired route
+          },
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
