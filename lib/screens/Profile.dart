@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                       title: 'Appointment',
                       iconBackgroundColor: Colors.blue.shade50,
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, '/fourteen');
+                        Navigator.pushReplacementNamed(context, '/fifteen');
                       },
                     ),
                     const SizedBox(height: 12),
