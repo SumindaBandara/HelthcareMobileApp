@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'Sign_up.dart';
+import '../Services/user_service.dart'; // Adjust import path accordingly
 
 class Sign_in extends StatefulWidget {
   const Sign_in({Key? key}) : super(key: key);
@@ -11,6 +11,18 @@ class Sign_in extends StatefulWidget {
 
 class _Sign_inState extends State<Sign_in> {
   bool _obscurePassword = true;
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final UserService _userService = UserService();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +59,7 @@ class _Sign_inState extends State<Sign_in> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     hintText: 'Enter your email',
                     border: InputBorder.none,
@@ -64,6 +77,7 @@ class _Sign_inState extends State<Sign_in> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
+                  controller: _passwordController,
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     hintText: 'Enter your password',
@@ -100,10 +114,29 @@ class _Sign_inState extends State<Sign_in> {
               const SizedBox(height: 15),
               // Sign In button
               ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/one');
+                onPressed: () async {
+                  String email = _emailController.text.trim();
+                  String password = _passwordController.text.trim();
 
-                  // Sign in logic would go here
+                  if (email.isEmpty || password.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Please enter email and password')),
+                    );
+                    return;
+                  }
+
+                  bool isValid =
+                      await _userService.isValidUser(email, password);
+
+                  if (isValid) {
+                    Navigator.pushNamed(context, '/one');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Invalid email or password')),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

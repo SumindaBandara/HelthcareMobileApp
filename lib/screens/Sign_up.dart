@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'Sign_in.dart';
-import 'package:untitled/services/user_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:untitled/models/user_model.dart';
 
 class Sign_up extends StatefulWidget {
   const Sign_up({Key? key}) : super(key: key);
@@ -19,7 +15,6 @@ class _Sign_upState extends State<Sign_up> {
   // Controllers for text fields
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final UserService _userService = UserService();
 
   // Validation function for Gmail
   bool _isValidGmailEmail(String email) {
@@ -32,15 +27,13 @@ class _Sign_upState extends State<Sign_up> {
     return password.length == 6;
   }
 
-  final TextEditingController _nameController = TextEditingController();
-
   // Sign up validation method
-  void _signUp() async {
+  void _signUp() {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
-    String name = _nameController.text.trim();
 
     if (!_isValidGmailEmail(email)) {
+      // Show error for invalid email
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please use a valid Gmail address')),
       );
@@ -48,33 +41,22 @@ class _Sign_upState extends State<Sign_up> {
     }
 
     if (!_isValidPassword(password)) {
+      // Show error for invalid password
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Password must be exactly 6 characters')),
       );
       return;
     }
 
-    if (!_agreeToTerms) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please agree to the Terms of Service')),
-      );
-      return;
-    }
-
-    String? result = await _userService.signUpUser(
-      name: name,
-      email: email,
-      password: password,
-    );
-
-    if (result == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sign up successful')),
-      );
-      // Optionally navigate
+    // Add your actual sign up logic here
+    if (_agreeToTerms) {
+      // Proceed with sign up
+      print('Sign up successful');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Sign up failed: $result')),
+        const SnackBar(
+            content:
+                Text('Please agree to Terms of Service and Privacy Policy')),
       );
     }
   }
@@ -114,7 +96,6 @@ class _Sign_upState extends State<Sign_up> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
-                  controller: _nameController,
                   decoration: InputDecoration(
                     hintText: 'Enter your name',
                     border: InputBorder.none,
@@ -127,20 +108,21 @@ class _Sign_upState extends State<Sign_up> {
               const SizedBox(height: 15),
               // Email field with controller
               Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                    borderRadius: BorderRadius.circular(10),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your Gmail',
+                    border: InputBorder.none,
+                    prefixIcon:
+                        Icon(Icons.mail_outline, color: Colors.grey[600]),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 15),
                   ),
-                  child: TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      hintText: 'Enter your email',
-                      border: InputBorder.none,
-                      prefixIcon:
-                          Icon(Icons.email_outlined, color: Colors.grey[600]),
-                      contentPadding: const EdgeInsets.symmetric(vertical: 15),
-                    ),
-                  )),
+                ),
+              ),
               const SizedBox(height: 15),
               // Password field with controller
               Container(
