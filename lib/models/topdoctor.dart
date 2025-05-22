@@ -6,6 +6,7 @@ class Doctor {
   final String rating;
   final String distance;
   final String image;
+  final String about;
 
   Doctor({
     required this.name,
@@ -13,6 +14,7 @@ class Doctor {
     required this.rating,
     required this.distance,
     required this.image,
+    required this.about,
   });
 
   factory Doctor.fromFirestore(DocumentSnapshot doc) {
@@ -23,6 +25,7 @@ class Doctor {
       rating: map['rating']?.toString() ?? '',
       distance: map['distance'] ?? '',
       image: map['image'] ?? '',
+      about: map['about'] ?? '',
     );
   }
 
@@ -33,9 +36,9 @@ class Doctor {
       rating: map['rating'] ?? '',
       distance: map['distance'] ?? '',
       image: map['image'] ?? '',
+      about: map['about'] ?? '',
     );
   }
-
   Map<String, dynamic> toMap() {
     return {
       'name': name,
@@ -43,6 +46,7 @@ class Doctor {
       'rating': rating,
       'distance': distance,
       'image': image,
+      'about': about,
     };
   }
 }

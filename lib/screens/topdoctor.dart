@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/models/topdoctor.dart';
-
 import '../Services/doctor_service.dart';
 import 'doctor_card.dart';
+import 'doctordetails.dart';
 
 class TopDoctorsScreen extends StatelessWidget {
   TopDoctorsScreen({super.key});
@@ -49,13 +49,7 @@ class TopDoctorsScreen extends StatelessWidget {
               itemCount: doctors.length,
               itemBuilder: (context, index) {
                 final doctor = doctors[index];
-                return DoctorCard(
-                  name: doctor.name,
-                  specialty: doctor.specialty,
-                  rating: doctor.rating,
-                  distance: doctor.distance,
-                  image: doctor.image,
-                );
+                return DoctorCard(doctor: doctor); // <-- Fixed line
               },
             ),
           );

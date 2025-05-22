@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import '../models/topdoctor.dart';
 
 class DoctorDetailScreen extends StatefulWidget {
+  final Doctor doctor;
+
+  const DoctorDetailScreen({Key? key, required this.doctor}) : super(key: key);
+
   @override
   _DoctorDetailScreenState createState() => _DoctorDetailScreenState();
 }
 
 class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
-  int selectedDateIndex = 2; // Default to Wed
+  int selectedDateIndex = 2;
   String selectedTime = "02:00 PM";
 
   final List<String> dates = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -33,6 +38,8 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final doctor = widget.doctor;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -46,20 +53,19 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.arrow_back),
+                    icon: const Icon(Icons.arrow_back),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/three');
+                      Navigator.pop(context);
                     },
                   ),
-                  Text(
+                  const Text(
                     "Doctor Detail",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Icon(Icons.favorite_border, color: Colors.blue[300]),
                 ],
               ),
-
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Doctor Info
               Row(
@@ -67,30 +73,32 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      "https://cdn.prod.website-files.com/62d4f06f9c1357a606c3b7ef/65ddf3cdf19abaf5688af2f8_shutterstock_1933145801%20(1)-p-2000.jpg", // Replace with actual image
+                      doctor.image,
                       height: 80,
                       width: 80,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Dr. Rishi",
-                          style: TextStyle(
+                      Text(doctor.name,
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
-                      Text("Cardiologist",
-                          style: TextStyle(color: Colors.grey)),
+                      Text(doctor.specialty,
+                          style: const TextStyle(color: Colors.grey)),
                       Row(
                         children: [
-                          Icon(Icons.star, color: Colors.blue, size: 16),
-                          SizedBox(width: 4),
-                          Text("4.7", style: TextStyle(color: Colors.blue)),
-                          SizedBox(width: 8),
-                          Icon(Icons.location_on, color: Colors.grey, size: 16),
-                          Text("800m away",
-                              style: TextStyle(color: Colors.grey)),
+                          const Icon(Icons.star, color: Colors.blue, size: 16),
+                          const SizedBox(width: 4),
+                          Text(doctor.rating,
+                              style: const TextStyle(color: Colors.blue)),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.location_on,
+                              color: Colors.grey, size: 16),
+                          Text(doctor.distance,
+                              style: const TextStyle(color: Colors.grey)),
                         ],
                       ),
                     ],
@@ -98,23 +106,19 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                 ],
               ),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-              // About
-              Text("About",
+              // About Section
+              const Text("About",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
-                "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut laore et dolore magna aliqua...",
+                doctor.about,
                 style: TextStyle(color: Colors.grey[700]),
               ),
-              TextButton(
-                  onPressed: () {},
-                  child:
-                      Text("Read more", style: TextStyle(color: Colors.blue))),
 
               // Dates
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               SizedBox(
                 height: 70,
                 child: ListView.builder(
@@ -130,13 +134,13 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                       },
                       child: Container(
                         width: 60,
-                        margin: EdgeInsets.only(right: 10),
+                        margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
                           color: isSelected ? Colors.blue : Colors.white,
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(color: Colors.grey.shade300),
                         ),
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -159,7 +163,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                 ),
               ),
 
-              Divider(height: 30),
+              const Divider(height: 30),
 
               // Time Slots
               Wrap(
@@ -178,8 +182,8 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                             });
                           },
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 16),
                       decoration: BoxDecoration(
                         color: isSelected
                             ? Colors.blue
@@ -208,7 +212,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                 }).toList(),
               ),
 
-              Spacer(),
+              const Spacer(),
 
               Center(
                 child: ElevatedButton(

@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/screens/doctordetails.dart';
+import '../models/topdoctor.dart';
 
 class DoctorCard extends StatelessWidget {
-  final String name;
-  final String specialty;
-  final String rating;
-  final String distance;
-  final String image;
+  final Doctor doctor;
 
-  const DoctorCard({
-    Key? key,
-    required this.name,
-    required this.specialty,
-    required this.rating,
-    required this.distance,
-    required this.image,
-  }) : super(key: key);
+  const DoctorCard({Key? key, required this.doctor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacementNamed(context, '/seven');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DoctorDetailScreen(doctor: doctor),
+          ),
+        );
       },
       child: Card(
         margin: const EdgeInsets.only(bottom: 12),
@@ -35,7 +31,7 @@ class DoctorCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
-                  image,
+                  doctor.image,
                   width: 80,
                   height: 80,
                   fit: BoxFit.cover,
@@ -53,7 +49,7 @@ class DoctorCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      doctor.name,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -61,7 +57,7 @@ class DoctorCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      specialty,
+                      doctor.specialty,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey[600],
@@ -73,7 +69,7 @@ class DoctorCard extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.blue, size: 18),
                         const SizedBox(width: 4),
                         Text(
-                          rating,
+                          doctor.rating.toString(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: Colors.blue,
@@ -84,7 +80,7 @@ class DoctorCard extends StatelessWidget {
                             color: Colors.grey, size: 18),
                         const SizedBox(width: 4),
                         Text(
-                          distance,
+                          doctor.distance,
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey[600],

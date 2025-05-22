@@ -1,81 +1,69 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    const CircleAvatar(
-                      radius: 50,
-                      backgroundImage: NetworkImage(
-                        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      const CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage(
+                          ('images/profile.PNG'),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    const Text(
-                      'Ruchita',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 12),
+                      const Text(
+                        'Ruchita',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 30),
-
-                    // Profile Menu Items
-                    ProfileMenuItem(
-                      icon: Icons.favorite_outline,
-                      title: 'My Saved',
-                      iconBackgroundColor: Colors.blue.shade50,
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/fourteen');
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    ProfileMenuItem(
-                      icon: Icons.calendar_today_outlined,
-                      title: 'Appointment',
-                      iconBackgroundColor: Colors.blue.shade50,
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/fifteen');
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    ProfileMenuItem(
-                      icon: Icons.payment_outlined,
-                      title: 'Payment Method',
-                      iconBackgroundColor: Colors.blue.shade50,
-                      onTap: () {
-                        // Navigate to Payment Method screen
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    ProfileMenuItem(
-                      icon: Icons.logout_outlined,
-                      title: 'Logout',
-                      iconBackgroundColor: Colors.blue.shade50,
-                      onTap: () {
-                        // Add logout logic here
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
+                      const SizedBox(height: 30),
+                      ProfileMenuItem(
+                        icon: Icons.favorite_outline,
+                        title: 'My Saved',
+                        iconBackgroundColor: Colors.blue.shade50,
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 12),
+                      ProfileMenuItem(
+                        icon: Icons.calendar_today_outlined,
+                        title: 'Appointmnet',
+                        iconBackgroundColor: Colors.blue.shade50,
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 12),
+                      ProfileMenuItem(
+                        icon: Icons.payment_outlined,
+                        title: 'Payment Method',
+                        iconBackgroundColor: Colors.blue.shade50,
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 12),
+                      ProfileMenuItem(
+                        icon: Icons.logout_outlined,
+                        title: 'Logout',
+                        iconBackgroundColor: Colors.blue.shade50,
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-
-            // Bottom Navigation
-            BottomNavBar(currentIndex: 3),
+            const BottomNavBar(currentIndex: 3),
           ],
         ),
       ),
@@ -90,12 +78,12 @@ class ProfileMenuItem extends StatelessWidget {
   final VoidCallback onTap;
 
   const ProfileMenuItem({
-    super.key,
+    Key? key,
     required this.icon,
     required this.title,
     required this.iconBackgroundColor,
     required this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -103,27 +91,27 @@ class ProfileMenuItem extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.08),
+              color: Colors.grey.withOpacity(0.1),
               spreadRadius: 1,
-              blurRadius: 6,
-              offset: const Offset(0, 2),
+              blurRadius: 1,
+              offset: const Offset(0, 1),
             ),
           ],
         ),
         child: Row(
           children: [
             Container(
-              width: 42,
-              height: 42,
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 color: iconBackgroundColor,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
                 icon,
