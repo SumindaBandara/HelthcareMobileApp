@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  /// Check if a user exists with given email and password in Firestore
   Future<bool> isValidUser(String email, String password) async {
     try {
       QuerySnapshot querySnapshot = await _firestore
@@ -16,6 +15,17 @@ class UserService {
     } catch (e) {
       print("Error checking user: $e");
       return false;
+    }
+  }
+
+  Future<void> addUser(String email, String password) async {
+    try {
+      await _firestore.collection('users').add({
+        'email': email,
+        'password': password,
+      });
+    } catch (e) {
+      print("Error adding user: $e");
     }
   }
 }

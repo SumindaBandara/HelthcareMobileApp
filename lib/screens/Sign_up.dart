@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Sign_in.dart';
+import 'package:untitled/services/user_service.dart'; // Update with your path
 
 class Sign_up extends StatefulWidget {
   const Sign_up({Key? key}) : super(key: key);
@@ -12,28 +13,25 @@ class _Sign_upState extends State<Sign_up> {
   bool _obscurePassword = true;
   bool _agreeToTerms = false;
 
-  // Controllers for text fields
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // Validation function for Gmail
+  final UserService _userService = UserService();
+
   bool _isValidGmailEmail(String email) {
     final gmailRegex = RegExp(r'^[a-zA-Z0-9.]+@gmail\.com$');
     return gmailRegex.hasMatch(email);
   }
 
-  // Validation function for password
   bool _isValidPassword(String password) {
     return password.length == 6;
   }
 
-  // Sign up validation method
-  void _signUp() {
+  void _signUp() async {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
     if (!_isValidGmailEmail(email)) {
-      // Show error for invalid email
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please use a valid Gmail address')),
       );
@@ -41,22 +39,35 @@ class _Sign_upState extends State<Sign_up> {
     }
 
     if (!_isValidPassword(password)) {
-      // Show error for invalid password
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Password must be exactly 6 characters')),
       );
       return;
     }
 
-    // Add your actual sign up logic here
-    if (_agreeToTerms) {
-      // Proceed with sign up
-      print('Sign up successful');
-    } else {
+    if (!_agreeToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content:
                 Text('Please agree to Terms of Service and Privacy Policy')),
+      );
+      return;
+    }
+
+    try {
+      await _userService.addUser(email, password);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Registration successful')),
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const Sign_in()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error during sign up: $e')),
       );
     }
   }
@@ -89,7 +100,6 @@ class _Sign_upState extends State<Sign_up> {
                 ),
               ),
               const SizedBox(height: 30),
-              // Name field (unchanged)
               Container(
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
@@ -106,7 +116,6 @@ class _Sign_upState extends State<Sign_up> {
                 ),
               ),
               const SizedBox(height: 15),
-              // Email field with controller
               Container(
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
@@ -124,7 +133,6 @@ class _Sign_upState extends State<Sign_up> {
                 ),
               ),
               const SizedBox(height: 15),
-              // Password field with controller
               Container(
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
@@ -156,7 +164,6 @@ class _Sign_upState extends State<Sign_up> {
                 ),
               ),
               const SizedBox(height: 15),
-              // Terms and conditions checkbox (unchanged)
               Row(
                 children: [
                   Checkbox(
@@ -174,17 +181,17 @@ class _Sign_upState extends State<Sign_up> {
                     child: RichText(
                       text: TextSpan(
                         text: 'I agree to the healthcare ',
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         children: [
-                          TextSpan(
+                          const TextSpan(
                             text: 'Terms of Service',
                             style: TextStyle(color: Colors.blue),
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: ' and ',
                             style: TextStyle(color: Colors.black),
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: 'Privacy Policy',
                             style: TextStyle(color: Colors.blue),
                           ),
@@ -195,7 +202,6 @@ class _Sign_upState extends State<Sign_up> {
                 ],
               ),
               const SizedBox(height: 30),
-              // Sign Up button with validation
               ElevatedButton(
                 onPressed: _signUp,
                 style: ElevatedButton.styleFrom(
@@ -215,7 +221,6 @@ class _Sign_upState extends State<Sign_up> {
                 ),
               ),
               const SizedBox(height: 20),
-              // Sign In link (unchanged)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
