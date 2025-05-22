@@ -17,6 +17,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
+
   void _showCardPaymentSheet() {
     showModalBottomSheet(
       context: context,
@@ -107,116 +109,151 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Doctor Info
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(widget.doctor.image),
-                  ),
-                  SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(widget.doctor.name,
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      Text(widget.doctor.specialty,
-                          style: TextStyle(color: Colors.grey)),
-                      Row(
-                        children: [
-                          Icon(Icons.star, color: Colors.blue),
-                          Text(" ${widget.doctor.rating}"),
-                          SizedBox(width: 10),
-                          Icon(Icons.location_on, color: Colors.grey),
-                          Text(" ${widget.doctor.distance}"),
-                        ],
-                      )
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(height: 20),
-              Text("Patient details",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              TextField(
-                controller: _nameController,
-                decoration: InputDecoration(hintText: "Name"),
-              ),
-              TextField(
-                controller: _ageController,
-                decoration: InputDecoration(hintText: "Age"),
-              ),
-              TextField(
-                controller: _phoneController,
-                decoration: InputDecoration(hintText: "Phone Number"),
-              ),
-              SizedBox(height: 20),
-              Text("Total cost",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text("LKR 2500.00", style: TextStyle(fontSize: 16)),
-              SizedBox(height: 20),
-              Text("Payment options",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              ListTile(
-                leading: Radio(
-                  value: 0,
-                  groupValue: _selectedPayment,
-                  onChanged: (int? value) {
-                    setState(() {
-                      _selectedPayment = value!;
-                    });
-                    _showCardPaymentSheet();
-                  },
-                ),
-                title: Text("Card Payment"),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Doctor Info
+                Row(
                   children: [
-                    Icon(Icons.credit_card, color: Colors.blue),
-                    Icon(Icons.payment, color: Colors.blue),
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(widget.doctor.image),
+                    ),
+                    SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(widget.doctor.name,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        Text(widget.doctor.specialty,
+                            style: TextStyle(color: Colors.grey)),
+                        Row(
+                          children: [
+                            Icon(Icons.star, color: Colors.blue),
+                            Text(" ${widget.doctor.rating}"),
+                            SizedBox(width: 10),
+                            Icon(Icons.location_on, color: Colors.grey),
+                            Text(" ${widget.doctor.distance}"),
+                          ],
+                        )
+                      ],
+                    )
                   ],
                 ),
-              ),
-              ListTile(
-                leading: Radio(
-                  value: 1,
-                  groupValue: _selectedPayment,
-                  onChanged: (int? value) {
-                    setState(() {
-                      _selectedPayment = value!;
-                    });
-                    Navigator.pushReplacementNamed(
-                      context,
-                      '/ten',
-                      arguments: {
-                        'name': _nameController.text,
-                        'age': _ageController.text,
-                        'phone': _phoneController.text,
-                      },
-                    );
+                SizedBox(height: 20),
+                Text("Patient details",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                TextFormField(
+                  controller: _nameController,
+                  decoration: InputDecoration(hintText: "Name"),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Name is required';
+                    }
+                    return null;
                   },
                 ),
-                title: Text("On day Payment"),
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  // Optional confirm logic
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
+                TextFormField(
+                  controller: _ageController,
+                  decoration: InputDecoration(hintText: "Age"),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Age is required';
+                    }
+                    return null;
+                  },
                 ),
-                child: Text("Confirm",
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
-              ),
-            ],
+                TextFormField(
+                  controller: _phoneController,
+                  decoration: InputDecoration(hintText: "Phone Number"),
+                  keyboardType: TextInputType.phone,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Phone number is required';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                Text("Total cost",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text("LKR 2500.00", style: TextStyle(fontSize: 16)),
+                SizedBox(height: 20),
+                Text("Payment options",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                ListTile(
+                  leading: Radio(
+                    value: 0,
+                    groupValue: _selectedPayment,
+                    onChanged: (int? value) {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          _selectedPayment = value!;
+                        });
+                        _showCardPaymentSheet();
+                      }
+                    },
+                  ),
+                  title: Text("Card Payment"),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.credit_card, color: Colors.blue),
+                      Icon(Icons.payment, color: Colors.blue),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  leading: Radio(
+                    value: 1,
+                    groupValue: _selectedPayment,
+                    onChanged: (int? value) {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          _selectedPayment = value!;
+                        });
+                        Navigator.pushReplacementNamed(
+                          context,
+                          '/ten',
+                          arguments: {
+                            'name': _nameController.text,
+                            'age': _ageController.text,
+                            'phone': _phoneController.text,
+                          },
+                        );
+                      }
+                    },
+                  ),
+                  title: Text("On day Payment"),
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text('Form is valid. Ready to proceed.')),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  child: Text("Confirm",
+                      style: TextStyle(color: Colors.white, fontSize: 18)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
