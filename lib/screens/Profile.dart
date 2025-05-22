@@ -35,28 +35,27 @@ class ProfileScreen extends StatelessWidget {
                         icon: Icons.favorite_outline,
                         title: 'My Saved',
                         iconBackgroundColor: Colors.blue.shade50,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/fourteen');
+                        },
                       ),
                       const SizedBox(height: 12),
                       ProfileMenuItem(
                         icon: Icons.calendar_today_outlined,
                         title: 'Appointmnet',
                         iconBackgroundColor: Colors.blue.shade50,
-                        onTap: () {},
-                      ),
-                      const SizedBox(height: 12),
-                      ProfileMenuItem(
-                        icon: Icons.payment_outlined,
-                        title: 'Payment Method',
-                        iconBackgroundColor: Colors.blue.shade50,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/fifteen');
+                        },
                       ),
                       const SizedBox(height: 12),
                       ProfileMenuItem(
                         icon: Icons.logout_outlined,
                         title: 'Logout',
                         iconBackgroundColor: Colors.blue.shade50,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/');
+                        },
                       ),
                     ],
                   ),

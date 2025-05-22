@@ -7,7 +7,6 @@ import 'package:untitled/screens/onboarding2.dart';
 import 'package:untitled/screens/topdoctor.dart';
 import 'package:untitled/screens/user.dart';
 import 'package:untitled/screens/CheckOut.dart';
-import 'package:untitled/screens/BookAppointment.dart';
 import 'package:untitled/screens/CheckOut.dart';
 import 'package:untitled/screens/ondaypayment.dart';
 import 'package:untitled/screens/paymentsucess.dart';
@@ -42,9 +41,8 @@ class MyApp extends StatelessWidget {
         '/three': (context) => TopDoctorsScreen(),
         '/five': (context) => Sign_in(),
         '/six': (context) => Sign_up(),
-        '/eight': (context) => AppointmentScreen(),
         '/nine': (context) => Checkout(),
-        '/ten': (context) => Ondaypayment(),
+        '/ten': (context) => const OnDayPayment(),
         '/eleven': (context) => Paymentsucess(),
         '/twelve': (context) => ProfileScreen(),
         '/thirteen': (context) => NotificationsScreen(),

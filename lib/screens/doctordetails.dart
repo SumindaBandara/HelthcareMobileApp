@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/topdoctor.dart';
+import 'package:untitled/screens/BookAppointment.dart';
 
 class DoctorDetailScreen extends StatefulWidget {
   final Doctor doctor;
@@ -217,7 +218,12 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/eight');
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AppointmentScreen(doctor: doctor),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 55),

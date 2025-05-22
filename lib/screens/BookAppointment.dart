@@ -1,14 +1,96 @@
 import 'package:flutter/material.dart';
+import '../models/topdoctor.dart'; // Import your Doctor model
 
 class AppointmentScreen extends StatefulWidget {
+  final Doctor doctor;
+
+  const AppointmentScreen({Key? key, required this.doctor}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _AppointmentScreenState createState() => _AppointmentScreenState();
 }
 
 class _AppointmentScreenState extends State<AppointmentScreen> {
   int _selectedPayment = -1;
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+
+  void _showCardPaymentSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 20,
+            right: 20,
+            top: 20,
+          ),
+          child: Wrap(
+            children: [
+              Center(
+                child: Container(
+                  height: 5,
+                  width: 60,
+                  margin: EdgeInsets.only(bottom: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              Text(
+                "Card Payment",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              TextField(
+                decoration: InputDecoration(labelText: 'Card Number'),
+                keyboardType: TextInputType.number,
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Expiry Date (MM/YY)'),
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'CVV'),
+                keyboardType: TextInputType.number,
+                obscureText: true,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/eleven',
+                    arguments: {
+                      'name': _nameController.text,
+                      'age': _ageController.text,
+                      'phone': _phoneController.text,
+                    },
+                  );
+                },
+                icon: Icon(Icons.check),
+                label: Text("Pay LKR 2500.00",
+                    style: TextStyle(fontSize: 16, color: Colors.white)),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  minimumSize: Size(double.infinity, 50),
+                ),
+              ),
+              SizedBox(height: 10),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +100,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacementNamed(context, '/seven');
+            Navigator.pushReplacementNamed(context, '/three');
           },
         ),
       ),
@@ -28,27 +110,29 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Doctor Info
               Row(
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('assets/doctor.jpg'),
+                    backgroundImage: NetworkImage(widget.doctor.image),
                   ),
                   SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Dr. Vaamana",
+                      Text(widget.doctor.name,
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)),
-                      Text("Dentists", style: TextStyle(color: Colors.grey)),
+                      Text(widget.doctor.specialty,
+                          style: TextStyle(color: Colors.grey)),
                       Row(
                         children: [
                           Icon(Icons.star, color: Colors.blue),
-                          Text(" 4.7"),
+                          Text(" ${widget.doctor.rating}"),
                           SizedBox(width: 10),
                           Icon(Icons.location_on, color: Colors.grey),
-                          Text(" 800m away"),
+                          Text(" ${widget.doctor.distance}"),
                         ],
                       )
                     ],
@@ -58,9 +142,18 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               SizedBox(height: 20),
               Text("Patient details",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              TextField(decoration: InputDecoration(hintText: "Name")),
-              TextField(decoration: InputDecoration(hintText: "Age")),
-              TextField(decoration: InputDecoration(hintText: "Phone Number")),
+              TextField(
+                controller: _nameController,
+                decoration: InputDecoration(hintText: "Name"),
+              ),
+              TextField(
+                controller: _ageController,
+                decoration: InputDecoration(hintText: "Age"),
+              ),
+              TextField(
+                controller: _phoneController,
+                decoration: InputDecoration(hintText: "Phone Number"),
+              ),
               SizedBox(height: 20),
               Text("Total cost",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -70,14 +163,15 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ListTile(
                 leading: Radio(
-                    value: 0,
-                    groupValue: _selectedPayment,
-                    onChanged: (int? value) {
-                      setState(() {
-                        _selectedPayment = value!;
-                      });
-                      Navigator.pushReplacementNamed(context, '/nine');
-                    }),
+                  value: 0,
+                  groupValue: _selectedPayment,
+                  onChanged: (int? value) {
+                    setState(() {
+                      _selectedPayment = value!;
+                    });
+                    _showCardPaymentSheet();
+                  },
+                ),
                 title: Text("Card Payment"),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -89,19 +183,30 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               ),
               ListTile(
                 leading: Radio(
-                    value: 1,
-                    groupValue: _selectedPayment,
-                    onChanged: (int? value) {
-                      setState(() {
-                        _selectedPayment = value!;
-                      });
-                      Navigator.pushReplacementNamed(context, '/ten');
-                    }),
+                  value: 1,
+                  groupValue: _selectedPayment,
+                  onChanged: (int? value) {
+                    setState(() {
+                      _selectedPayment = value!;
+                    });
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/ten',
+                      arguments: {
+                        'name': _nameController.text,
+                        'age': _ageController.text,
+                        'phone': _phoneController.text,
+                      },
+                    );
+                  },
+                ),
                 title: Text("On day Payment"),
               ),
-              SizedBox(height: 5),
+              SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Optional confirm logic
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
                   backgroundColor: Colors.blue,

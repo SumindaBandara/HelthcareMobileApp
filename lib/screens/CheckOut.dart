@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Checkout extends StatelessWidget {
+  const Checkout({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +10,7 @@ class Checkout extends StatelessWidget {
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         currentIndex: 3,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
               icon: Icon(Icons.assignment), label: "Reports"),
@@ -21,7 +23,7 @@ class Checkout extends StatelessWidget {
         children: [
           Column(
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               ListTile(
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -29,35 +31,45 @@ class Checkout extends StatelessWidget {
                     Navigator.pushReplacementNamed(context, '/eight');
                   },
                 ),
-                title: Center(
-                    child: Text("Appointment",
-                        style: TextStyle(fontWeight: FontWeight.bold))),
+                title: const Center(
+                  child: Text(
+                    "Appointment",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Card(
                   elevation: 3,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: ListTile(
-                    leading: CircleAvatar(
+                    leading: const CircleAvatar(
                       backgroundImage: AssetImage(
-                          "assets/doctor.png"), // replace with actual image
+                          "assets/doctor.png"), // Replace with actual asset
                     ),
-                    title: Text("Dr. Vaamana"),
+                    title: const Text("Dr. Vaamana"),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(children: [
-                          Icon(Icons.star, color: Colors.blue, size: 16),
-                          SizedBox(width: 4),
-                          Text("4.7"),
-                        ]),
-                        Row(children: [
-                          Icon(Icons.location_on, color: Colors.grey, size: 16),
-                          SizedBox(width: 4),
-                          Text("800m away"),
-                        ]),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: const [
+                            Icon(Icons.star, color: Colors.blue, size: 16),
+                            SizedBox(width: 4),
+                            Text("4.7"),
+                          ],
+                        ),
+                        Row(
+                          children: const [
+                            Icon(Icons.location_on,
+                                color: Colors.grey, size: 16),
+                            SizedBox(width: 4),
+                            Text("800m away"),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -69,46 +81,56 @@ class Checkout extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: 400,
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black12)],
+                boxShadow: [
+                  BoxShadow(blurRadius: 10, color: Colors.black12),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       IconButton(
-                        icon: Icon(Icons.close, color: Colors.black54),
+                        icon: const Icon(Icons.close, color: Colors.black54),
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/eight');
+                          Navigator.pushReplacementNamed(context, '/fifteen');
                         },
                       ),
                     ],
                   ),
-                  Text("Add Card",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 5),
-                  TextField(
-                    decoration: InputDecoration(
-                        labelText: "Name on card", hintText: "Ruchi"),
+                  const Text(
+                    "Add Card",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  TextField(
+                  const SizedBox(height: 5),
+                  const TextField(
                     decoration: InputDecoration(
-                        labelText: "Card number",
-                        hintText: "1234 4567 7890 1234"),
+                      labelText: "Name on card",
+                      hintText: "Ruchi",
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const TextField(
+                    decoration: InputDecoration(
+                      labelText: "Card number",
+                      hintText: "1234 4567 7890 1234",
+                    ),
                     keyboardType: TextInputType.number,
                   ),
+                  const SizedBox(height: 10),
                   Row(
-                    children: [
+                    children: const [
                       Expanded(
                         child: TextField(
                           decoration: InputDecoration(
-                              labelText: "Expiry date", hintText: "02/24"),
+                            labelText: "Expiry date",
+                            hintText: "02/24",
+                          ),
                           keyboardType: TextInputType.datetime,
                         ),
                       ),
@@ -122,7 +144,7 @@ class Checkout extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -133,10 +155,13 @@ class Checkout extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
-                      child: Text("Pay Now",
-                          style: TextStyle(fontSize: 16, color: Colors.white)),
+                      child: const Text(
+                        "Pay Now",
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
                     ),
                   ),
                 ],
