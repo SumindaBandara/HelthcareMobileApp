@@ -99,7 +99,7 @@ class NotificationsScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Chardiologist',
+                  'Cardiologist',
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
