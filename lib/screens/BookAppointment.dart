@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/topdoctor.dart'; // Import your Doctor model
+import '../models/topdoctor.dart';
+import '../models/appointment.dart';
+import '../services/appointment_service.dart';
 
 class AppointmentScreen extends StatefulWidget {
   final Doctor doctor;
@@ -18,6 +20,34 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
   final TextEditingController _phoneController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  void _submitAppointment(String paymentMethod) async {
+    final age = int.tryParse(_ageController.text.trim());
+    if (age == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please enter a valid age')),
+      );
+      return;
+    }
+
+    final newAppointment = Appointment(
+      doctorName: widget.doctor.name,
+      specialty: widget.doctor.specialty,
+      patientName: _nameController.text.trim(),
+      age: age,
+      phone: _phoneController.text.trim(),
+      paymentMethod: paymentMethod,
+      createdAt: DateTime.now(),
+    );
+
+    await AppointmentService.addAppointment(newAppointment);
+
+    Navigator.pushReplacementNamed(context, '/eleven', arguments: {
+      'name': newAppointment.patientName,
+      'age': newAppointment.age.toString(),
+      'phone': newAppointment.phone,
+    });
+  }
 
   void _showCardPaymentSheet() {
     showModalBottomSheet(
@@ -47,14 +77,13 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   ),
                 ),
               ),
-              Text(
-                "Card Payment",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+              Text("Card Payment",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(labelText: 'Card Number'),
                 keyboardType: TextInputType.number,
+                obscureText: true,
               ),
               TextField(
                 decoration: InputDecoration(labelText: 'Expiry Date (MM/YY)'),
@@ -68,15 +97,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               ElevatedButton.icon(
                 onPressed: () {
                   Navigator.pop(context);
-                  Navigator.pushReplacementNamed(
-                    context,
-                    '/eleven',
-                    arguments: {
-                      'name': _nameController.text,
-                      'age': _ageController.text,
-                      'phone': _phoneController.text,
-                    },
-                  );
+                  _submitAppointment("Card");
                 },
                 icon: Icon(Icons.check),
                 label: Text("Pay LKR 2500.00",
@@ -86,12 +107,25 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   minimumSize: Size(double.infinity, 50),
                 ),
               ),
-              SizedBox(height: 10),
             ],
           ),
         );
       },
     );
+  }
+
+  void _handleConfirm() {
+    if (_formKey.currentState!.validate()) {
+      if (_selectedPayment == 0) {
+        _showCardPaymentSheet();
+      } else if (_selectedPayment == 1) {
+        _submitAppointment("OnDay");
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please select a payment method')),
+        );
+      }
+    }
   }
 
   @override
@@ -101,9 +135,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         title: Text("Appointment"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, '/three');
-          },
+          onPressed: () => Navigator.pushReplacementNamed(context, '/three'),
         ),
       ),
       body: SingleChildScrollView(
@@ -114,7 +146,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Doctor Info
                 Row(
                   children: [
                     CircleAvatar(
@@ -150,34 +181,25 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 TextFormField(
                   controller: _nameController,
                   decoration: InputDecoration(hintText: "Name"),
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Name is required';
-                    }
-                    return null;
-                  },
+                  validator: (value) => value == null || value.trim().isEmpty
+                      ? 'Name is required'
+                      : null,
                 ),
                 TextFormField(
                   controller: _ageController,
                   decoration: InputDecoration(hintText: "Age"),
                   keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Age is required';
-                    }
-                    return null;
-                  },
+                  validator: (value) => value == null || value.trim().isEmpty
+                      ? 'Age is required'
+                      : null,
                 ),
                 TextFormField(
                   controller: _phoneController,
                   decoration: InputDecoration(hintText: "Phone Number"),
                   keyboardType: TextInputType.phone,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Phone number is required';
-                    }
-                    return null;
-                  },
+                  validator: (value) => value == null || value.trim().isEmpty
+                      ? 'Phone number is required'
+                      : null,
                 ),
                 SizedBox(height: 20),
                 Text("Total cost",
@@ -193,12 +215,9 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     value: 0,
                     groupValue: _selectedPayment,
                     onChanged: (int? value) {
-                      if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          _selectedPayment = value!;
-                        });
-                        _showCardPaymentSheet();
-                      }
+                      setState(() {
+                        _selectedPayment = value!;
+                      });
                     },
                   ),
                   title: Text("Card Payment"),
@@ -215,34 +234,16 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     value: 1,
                     groupValue: _selectedPayment,
                     onChanged: (int? value) {
-                      if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          _selectedPayment = value!;
-                        });
-                        Navigator.pushReplacementNamed(
-                          context,
-                          '/ten',
-                          arguments: {
-                            'name': _nameController.text,
-                            'age': _ageController.text,
-                            'phone': _phoneController.text,
-                          },
-                        );
-                      }
+                      setState(() {
+                        _selectedPayment = value!;
+                      });
                     },
                   ),
                   title: Text("On day Payment"),
                 ),
                 SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text('Form is valid. Ready to proceed.')),
-                      );
-                    }
-                  },
+                  onPressed: _handleConfirm,
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 50),
                     backgroundColor: Colors.blue,

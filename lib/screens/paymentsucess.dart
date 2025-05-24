@@ -72,7 +72,6 @@ class PaymentsucessState extends State<Paymentsucess> {
                   paymentDetail("Ref Number", "000085752257"),
                   paymentDetail("Payment Time", "02-02-2024, 07:30:16"),
                   paymentDetail("Payment Method", "Bank Transfer", bold: true),
-                  paymentDetail("Sender Name", "Ruchitha"),
                   paymentDetail("Amount", "LKR 2500", bold: true),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
