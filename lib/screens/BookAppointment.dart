@@ -21,7 +21,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void _submitAppointment(String paymentMethod) async {
+  void _submitAppointment(String paymentMethod, String nextRoute) async {
     final age = int.tryParse(_ageController.text.trim());
     if (age == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -42,7 +42,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
 
     await AppointmentService.addAppointment(newAppointment);
 
-    Navigator.pushReplacementNamed(context, '/eleven', arguments: {
+    Navigator.pushReplacementNamed(context, nextRoute, arguments: {
       'name': newAppointment.patientName,
       'age': newAppointment.age.toString(),
       'phone': newAppointment.phone,
@@ -97,7 +97,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               ElevatedButton.icon(
                 onPressed: () {
                   Navigator.pop(context);
-                  _submitAppointment("Card");
+                  _submitAppointment("Card", "/eleven");
                 },
                 icon: Icon(Icons.check),
                 label: Text("Pay LKR 2500.00",
@@ -119,7 +119,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       if (_selectedPayment == 0) {
         _showCardPaymentSheet();
       } else if (_selectedPayment == 1) {
-        _submitAppointment("OnDay");
+        _submitAppointment("OnDay", "/ten");
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Please select a payment method')),
