@@ -7,7 +7,6 @@ import 'package:untitled/screens/onboarding2.dart';
 import 'package:untitled/screens/topdoctor.dart';
 import 'package:untitled/screens/user.dart';
 import 'package:untitled/screens/CheckOut.dart';
-import 'package:untitled/screens/CheckOut.dart';
 import 'package:untitled/screens/ondaypayment.dart';
 import 'package:untitled/screens/paymentsucess.dart';
 import 'package:untitled/screens/Profile.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/topdoctor.dart';
 import 'package:untitled/screens/BookAppointment.dart';
+
+import '../models/topdoctor.dart';
 
 class DoctorDetailScreen extends StatefulWidget {
   final Doctor doctor;
@@ -40,6 +41,8 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final doctor = widget.doctor;
+    String selectedDate =
+        "${dates[selectedDateIndex]} ${days[selectedDateIndex]}";
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -221,7 +224,11 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AppointmentScreen(doctor: doctor),
+                        builder: (context) => AppointmentScreen(
+                          doctor: doctor,
+                          selectedDate: selectedDate,
+                          selectedTime: selectedTime,
+                        ),
                       ),
                     );
                   },

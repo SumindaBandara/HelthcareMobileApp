@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
-import '../models/topdoctor.dart';
+
 import '../models/appointment.dart';
+import '../models/topdoctor.dart';
 import '../services/appointment_service.dart';
 
 class AppointmentScreen extends StatefulWidget {
   final Doctor doctor;
+  final String selectedDate;
+  final String selectedTime;
 
-  const AppointmentScreen({Key? key, required this.doctor}) : super(key: key);
+  const AppointmentScreen({
+    Key? key,
+    required this.doctor,
+    required this.selectedDate,
+    required this.selectedTime,
+  }) : super(key: key);
 
   @override
   _AppointmentScreenState createState() => _AppointmentScreenState();
@@ -38,6 +46,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       phone: _phoneController.text.trim(),
       paymentMethod: paymentMethod,
       createdAt: DateTime.now(),
+      date: widget.selectedDate,
+      time: widget.selectedTime,
     );
 
     await AppointmentService.addAppointment(newAppointment);
@@ -99,7 +109,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   Navigator.pop(context);
                   _submitAppointment("Card", "/eleven");
                 },
-                icon: Icon(Icons.check),
+                icon: Icon(Icons.check, color: Colors.white),
                 label: Text("Pay LKR 2500.00",
                     style: TextStyle(fontSize: 16, color: Colors.white)),
                 style: ElevatedButton.styleFrom(
@@ -206,7 +216,56 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text("LKR 2500.00", style: TextStyle(fontSize: 16)),
-                SizedBox(height: 20),
+                SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Card(
+                    color: Colors.blue.shade50,
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Appointment Details",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              const Icon(Icons.calendar_today,
+                                  color: Colors.blue, size: 20),
+                              const SizedBox(width: 8),
+                              Text(
+                                "Date: ${widget.selectedDate}",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              const Icon(Icons.access_time,
+                                  color: Colors.blue, size: 20),
+                              const SizedBox(width: 8),
+                              Text(
+                                "Time: ${widget.selectedTime}",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 Text("Payment options",
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),

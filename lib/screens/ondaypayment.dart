@@ -92,12 +92,12 @@ class OnDayPaymentState extends State<OnDayPayment> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/one');
+                        Navigator.pushReplacementNamed(context, '/fifteen');
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue),
                       child: Text(
-                        "Back to Home",
+                        "My Appointments",
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),

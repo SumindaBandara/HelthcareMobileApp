@@ -224,7 +224,7 @@ class _Sign_upState extends State<Sign_up> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have an account?"),
+                  const Text("already have an account?"),
                   TextButton(
                     onPressed: () {
                       Navigator.push(

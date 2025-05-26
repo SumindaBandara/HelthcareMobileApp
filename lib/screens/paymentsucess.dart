@@ -114,7 +114,7 @@ class PaymentsucessState extends State<Paymentsucess> {
                         SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/one');
+                            Navigator.pushReplacementNamed(context, '/fifteen');
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -125,7 +125,7 @@ class PaymentsucessState extends State<Paymentsucess> {
                                 horizontal: 50, vertical: 15),
                           ),
                           child: Text(
-                            "Back to Home",
+                            "My Appointments",
                             style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
                         ),

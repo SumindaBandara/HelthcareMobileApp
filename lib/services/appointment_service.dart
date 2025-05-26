@@ -12,4 +12,13 @@ class AppointmentService {
       print("❌ Failed to add appointment: $e");
     }
   }
+
+  static Future<void> deleteAppointment(String docId) async {
+    try {
+      await _firestore.collection('appointments').doc(docId).delete();
+      print("🗑️ Appointment deleted from Firestore");
+    } catch (e) {
+      print("❌ Failed to delete appointment: $e");
+    }
+  }
 }

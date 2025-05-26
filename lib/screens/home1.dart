@@ -10,6 +10,14 @@ class Home1 extends StatefulWidget {
 class _Home1State extends State<Home1> {
   int _selectedIndex = 0;
 
+  final List<String> healthyFruitTips = [
+    'Blueberries are rich in antioxidants and improve brain health.',
+    'Apples are high in fiber and help reduce cholesterol.',
+    'Bananas provide energy and are a great source of potassium.',
+    'Oranges boost immunity with their high vitamin C content.',
+    'Avocados contain healthy fats that support heart health.',
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -157,13 +165,13 @@ class _Home1State extends State<Home1> {
                       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
                   child: Column(
                     children: List.generate(
-                      5,
-                      (index) => const ListTile(
-                        leading: Icon(Icons.check_circle_outline,
+                      healthyFruitTips.length,
+                      (index) => ListTile(
+                        leading: const Icon(Icons.check_circle_outline,
                             color: Colors.green),
                         title: Text(
-                          'The 25 Healthiest Fruits You Can Eat, According to a Nutritionist',
-                          style: TextStyle(
+                          healthyFruitTips[index],
+                          style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),

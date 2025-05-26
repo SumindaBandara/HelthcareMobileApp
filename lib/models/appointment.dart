@@ -6,6 +6,8 @@ class Appointment {
   final String phone;
   final String paymentMethod;
   final DateTime createdAt;
+  final String date;
+  final String time;
 
   Appointment({
     required this.doctorName,
@@ -15,6 +17,8 @@ class Appointment {
     required this.phone,
     required this.paymentMethod,
     required this.createdAt,
+    required this.date,
+    required this.time,
   });
 
   Map<String, dynamic> toMap() {
@@ -26,6 +30,8 @@ class Appointment {
       'phone': phone,
       'paymentMethod': paymentMethod,
       'createdAt': createdAt.toIso8601String(),
+      'date': date,
+      'time': time,
     };
   }
 }
