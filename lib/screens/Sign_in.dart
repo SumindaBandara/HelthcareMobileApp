@@ -130,6 +130,10 @@ class _Sign_inState extends State<Sign_in> {
                       await _userService.isValidUser(email, password);
 
                   if (isValid) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('You are successfully logged in')),
+                    );
                     Navigator.pushNamed(context, '/one');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(

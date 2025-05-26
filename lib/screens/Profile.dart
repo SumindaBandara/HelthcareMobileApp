@@ -15,22 +15,22 @@ class ProfileScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 50),
                       const CircleAvatar(
                         radius: 50,
                         backgroundImage: AssetImage(
-                          ('images/profile.PNG'),
+                          ('images/profileN.png'),
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 20),
                       const Text(
-                        'Ruchita',
+                        '',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 5),
                       ProfileMenuItem(
                         icon: Icons.favorite_outline,
                         title: 'My Saved',
@@ -154,7 +154,7 @@ class BottomNavBar extends StatelessWidget {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       onTap: (index) {
-        if (index == currentIndex) return; // Prevent redundant navigation
+        if (index == currentIndex) return;
 
         switch (index) {
           case 0:

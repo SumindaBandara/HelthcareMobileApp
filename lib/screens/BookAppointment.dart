@@ -262,6 +262,22 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         currentIndex: 3,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.pushReplacementNamed(context, '/one');
+              break;
+            case 1:
+              Navigator.pushReplacementNamed(context, '/reports');
+              break;
+            case 2:
+              Navigator.pushReplacementNamed(context, '/thirteen');
+              break;
+            case 3:
+              Navigator.pushReplacementNamed(context, '/twelve');
+              break;
+          }
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(

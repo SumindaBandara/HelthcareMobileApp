@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 class Appointment extends StatelessWidget {
   final List<Map<String, String>> appointments = [
     {
-      'name': 'Dr. Vaamana',
-      'specialty': 'Dentists',
+      'name': 'Dr. Kevin Perera',
+      'specialty': 'Dermatologist',
       'rating': '4.7',
       'status': 'Accepted',
-      'image': 'images/appdoc.png',
+      'image': 'images/doctor2.webp',
     },
     {
-      'name': 'Dr. Vaamana',
-      'specialty': 'Dentists',
-      'rating': '4.7',
+      'name': 'Mrs. Jayasooriya',
+      'specialty': 'Neurology',
+      'rating': '4.5',
       'status': 'Accepted',
-      'image': 'images/appdoc.png',
+      'image': 'images/doctor5.jpg',
     },
   ];
 
@@ -25,9 +25,7 @@ class Appointment extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            // Navigate to another page when the back arrow is clicked
-            Navigator.pushNamed(context,
-                '/twelve'); // Replace '/anotherPage' with your desired route
+            Navigator.pushNamed(context, '/twelve');
           },
         ),
         backgroundColor: Colors.white,
@@ -105,18 +103,35 @@ class Appointment extends StatelessWidget {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-        items: const [
+        currentIndex: 3,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.pushReplacementNamed(context, '/one'); // 👈 Home page
+              break;
+            case 1:
+              Navigator.pushReplacementNamed(
+                  context, '/reports'); // 👈 Reports page
+              break;
+            case 2:
+              Navigator.pushReplacementNamed(
+                  context, '/thirteen'); // 👈 Notifications page
+              break;
+            case 3:
+              Navigator.pushReplacementNamed(
+                  context, '/twelve'); // 👈 Profile page
+              break;
+          }
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: 'Home'),
+              icon: Icon(Icons.assignment), label: "Reports"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.assignment_outlined), label: 'Reports'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_none_outlined),
-              label: 'Notification'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+              icon: Icon(Icons.notifications), label: "Notification"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
     );

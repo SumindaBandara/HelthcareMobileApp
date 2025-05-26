@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class BookingScreen extends StatefulWidget {
-  const BookingScreen({super.key});
+class Ambulance extends StatefulWidget {
+  const Ambulance({super.key});
 
   @override
-  State<BookingScreen> createState() => _BookingScreenState();
+  State<Ambulance> createState() => _AmbulanceState();
 }
 
-class _BookingScreenState extends State<BookingScreen> {
+class _AmbulanceState extends State<Ambulance> {
   final TextEditingController _pickupController = TextEditingController();
   final TextEditingController _hospitalController = TextEditingController();
 
@@ -81,19 +81,18 @@ class _BookingScreenState extends State<BookingScreen> {
                   } else {
                     showDialog(
                       context: context,
-                      builder:
-                          (context) => AlertDialog(
-                            title: const Text('Success!'),
-                            content: Text(
-                              'Ambulance booked to ${_hospitalController.text}',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text('OK'),
-                              ),
-                            ],
+                      builder: (context) => AlertDialog(
+                        title: const Text('Success!'),
+                        content: Text(
+                          'Ambulance booked to ${_hospitalController.text}',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('OK'),
                           ),
+                        ],
+                      ),
                     );
                   }
                 },

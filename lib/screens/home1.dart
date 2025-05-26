@@ -17,7 +17,6 @@ class _Home1State extends State<Home1> {
 
     switch (index) {
       case 0:
-        // Already on Home, no need to navigate
         break;
       case 1:
         ScaffoldMessenger.of(context).showSnackBar(
@@ -25,10 +24,10 @@ class _Home1State extends State<Home1> {
         );
         break;
       case 2:
-        Navigator.pushNamed(context, '/thirteen'); // Notification
+        Navigator.pushNamed(context, '/thirteen');
         break;
       case 3:
-        Navigator.pushNamed(context, '/twelve'); // Profile
+        Navigator.pushNamed(context, '/twelve');
         break;
     }
   }
@@ -36,54 +35,52 @@ class _Home1State extends State<Home1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(
-          Icons.menu,
-          color: Colors.black,
-        ),
-        actions: const [
-          Padding(padding: EdgeInsets.all(8.0)),
-        ],
+        leading: const Icon(Icons.menu, color: Colors.black),
+        actions: const [Padding(padding: EdgeInsets.all(8.0))],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header Section
+              // Header
               Container(
-                color: const Color(0xFFE3F2FD), // Light blue background
+                decoration: BoxDecoration(
+                  color: const Color(0xFFE3F2FD),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: const EdgeInsets.all(10),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Asiri Hospital',
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue,
-                            fontFamily: 'Poppins',
-                            height: 1.5,
-                            decoration: TextDecoration.none,
-                            decorationColor: Colors.blue,
-                            decorationThickness: 2.0,
-                            decorationStyle: TextDecorationStyle.solid,
-                          )),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Book Your Appointment Today',
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                    ),
-                    const Spacer(),
-                    Image.asset(
-                      "images/headerbg.png",
-                      width: 100,
-                      height: 200,
-                      fit: BoxFit.cover,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        "images/headerbg.png",
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ],
                 ),
@@ -98,19 +95,20 @@ class _Home1State extends State<Home1> {
                   Text(
                     'Welcome to',
                     style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
                     ),
                   ),
                   Text(
-                    'Asiri Hospital',
+                    'Central Care Medical Center',
                     style: TextStyle(
-                      fontSize: 26,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.blue,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 8),
                   Text(
                     'Contact - +725631247',
                     style: TextStyle(
@@ -120,6 +118,7 @@ class _Home1State extends State<Home1> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 30),
 
               // Navigation Buttons
@@ -131,9 +130,10 @@ class _Home1State extends State<Home1> {
                   _buildNavItemWithNavigation(
                       context, Icons.search, 'Find Doctors', '/sixteen'),
                   _buildNavItemWithNavigation(
-                      context, Icons.local_taxi, 'Ambulance', '/four'),
+                      context, Icons.local_taxi, 'Ambulance', '/eighteen'),
                 ],
               ),
+
               const SizedBox(height: 40),
 
               // Health Tips Section
@@ -142,16 +142,19 @@ class _Home1State extends State<Home1> {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
+                  color: Colors.black87,
                 ),
               ),
               const SizedBox(height: 15),
+
               Card(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                elevation: 3,
+                elevation: 4,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
                   child: Column(
                     children: List.generate(
                       5,
@@ -160,20 +163,22 @@ class _Home1State extends State<Home1> {
                             color: Colors.green),
                         title: Text(
                           'The 25 Healthiest Fruits You Can Eat, According to a Nutritionist',
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
+
               const SizedBox(height: 20),
             ],
           ),
         ),
       ),
-
-      // Bottom Navigation Bar with Navigation
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
@@ -202,7 +207,6 @@ class _Home1State extends State<Home1> {
     );
   }
 
-  // Navigation button
   Widget _buildNavItemWithNavigation(
       BuildContext context, IconData icon, String label, String route) {
     return GestureDetector(
@@ -211,13 +215,23 @@ class _Home1State extends State<Home1> {
       },
       child: Column(
         children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.blue[50],
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.blue[50],
+              borderRadius: BorderRadius.circular(40),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 4,
+                  offset: Offset(2, 2),
+                )
+              ],
+            ),
+            padding: const EdgeInsets.all(16),
             child: Icon(
               icon,
               color: Colors.blue,
-              size: 30,
+              size: 28,
             ),
           ),
           const SizedBox(height: 6),

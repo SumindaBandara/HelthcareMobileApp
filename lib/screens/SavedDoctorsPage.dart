@@ -96,18 +96,32 @@ class MySavedScreen extends StatelessWidget {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-        items: const [
+        currentIndex: 3,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.pushReplacementNamed(context, '/one');
+              break;
+            case 1:
+              Navigator.pushReplacementNamed(context, '/reports');
+              break;
+            case 2:
+              Navigator.pushReplacementNamed(context, '/thirteen');
+              break;
+            case 3:
+              Navigator.pushReplacementNamed(context, '/twelve');
+              break;
+          }
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: 'Home'),
+              icon: Icon(Icons.assignment), label: "Reports"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.assignment_outlined), label: 'Reports'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_none_outlined),
-              label: 'Notification'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+              icon: Icon(Icons.notifications), label: "Notification"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
     );
