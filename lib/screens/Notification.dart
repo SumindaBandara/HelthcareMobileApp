@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+
 class NotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,23 +23,39 @@ class NotificationsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Notification items
-            _buildNotificationItem(),
+            _buildNotificationItem(
+              doctorName: 'Dr. Kevin Perera',
+              specialization: 'Dermatologist',
+              appointmentNo: 'Appointment No 20',
+              time: 'Time - 3:00 P.M',
+              date: 'Date - 2025-05-24',
+            ),
             const SizedBox(height: 10),
-            _buildNotificationItem(),
+            _buildNotificationItem(
+              doctorName: 'Dr. Nuwan jayasuriya',
+              specialization: 'Orthopedic Surgeon',
+              appointmentNo: 'Appointment No 12',
+              time: 'Time - 10:00 A.M',
+              date: 'Date - 2025-04-20',
+            ),
           ],
         ),
       ),
-      bottomNavigationBar:
-          BottomNavBar(currentIndex: 2), // Update to match your current index
+      bottomNavigationBar: BottomNavBar(currentIndex: 2),
     );
   }
 
-  Widget _buildNotificationItem() {
+  Widget _buildNotificationItem({
+    required String doctorName,
+    required String specialization,
+    required String appointmentNo,
+    required String time,
+    String? date,
+  }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: Colors.grey[100],
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -47,17 +65,17 @@ class NotificationsScreen extends StatelessWidget {
             flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  'Dr. Rishi',
-                  style: TextStyle(
+                  doctorName,
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  'Cardiologist',
-                  style: TextStyle(
+                  specialization,
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
                   ),
@@ -70,21 +88,29 @@ class NotificationsScreen extends StatelessWidget {
             flex: 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
+              children: [
                 Text(
-                  'Appointment No 20',
-                  style: TextStyle(
-                    color: Colors.grey,
+                  appointmentNo,
+                  style: const TextStyle(
+                    color: Color(0xFF4A4A4A),
                     fontSize: 14,
                   ),
                 ),
                 Text(
-                  'Time - 3:30P.M',
-                  style: TextStyle(
-                    color: Colors.grey,
+                  time,
+                  style: const TextStyle(
+                    color: Color(0xFF4A4A4A),
                     fontSize: 14,
                   ),
                 ),
+                if (date != null)
+                  Text(
+                    date,
+                    style: const TextStyle(
+                      color: Color(0xFF4A4A4A),
+                      fontSize: 14,
+                    ),
+                  ),
               ],
             ),
           ),

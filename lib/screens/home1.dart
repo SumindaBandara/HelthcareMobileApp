@@ -11,11 +11,11 @@ class _Home1State extends State<Home1> {
   int _selectedIndex = 0;
 
   final List<String> healthyFruitTips = [
-    'Blueberries are rich in antioxidants and improve brain health.',
-    'Apples are high in fiber and help reduce cholesterol.',
-    'Bananas provide energy and are a great source of potassium.',
-    'Oranges boost immunity with their high vitamin C content.',
-    'Avocados contain healthy fats that support heart health.',
+    'Include a variety of fruits, vegetables, whole grains, and lean proteins to boost your immune system.',
+    'Drink at least 8 glasses of water daily to maintain energy levels and support vital organ functions.',
+    'Aim for 7–9 hours of quality sleep per night to help your body recover and function at its best.',
+    'Engage in at least 30 minutes of moderate physical activity most days of the week to improve heart health and mood.',
+    'Practice mindfulness, meditation, or simple breathing exercises to reduce anxiety and enhance mental well-being.',
   ];
 
   void _onItemTapped(int index) {
