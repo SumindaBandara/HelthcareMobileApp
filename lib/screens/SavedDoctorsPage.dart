@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 class MySavedScreen extends StatelessWidget {
   final List<Map<String, String>> doctors = [
     {
-      'name': 'Dr. Rishi',
-      'specialty': 'Cardiologist',
-      'rating': '4.7',
-      'distance': '800m away',
-      'image': 'images/doc1.png'
+      'name': 'Dr. Sashika Ranasinghe',
+      'specialty': 'Neurologist',
+      'rating': '4.9',
+      'distance': '2.9 km away',
+      'image': 'images/doctor3.avif'
     },
     {
-      'name': 'Dr. Rishi',
-      'specialty': 'Cardiologist',
-      'rating': '4.7',
-      'distance': '800m away',
-      'image': 'images/doc2.png'
+      'name': 'Dr. Nuwan Jayasuriya',
+      'specialty': 'Orthopedic Surgeon',
+      'rating': '4.6',
+      'distance': '4.0 km away',
+      'image': 'images/doctor2.webp'
     },
   ];
 

@@ -31,8 +31,20 @@ class _AmbulanceState extends State<Ambulance> {
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Icon(Icons.map, size: 50, color: Colors.grey),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Transform.scale(
+                  scale: 3.2,
+                  child: Image.asset(
+                    "images/map2.webp",
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+              ),
             ),
+
             const SizedBox(height: 20),
 
             // Pickup Location Field
